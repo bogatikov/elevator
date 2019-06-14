@@ -55,7 +55,8 @@ public class Elevator extends Observable {
                 setChanged();
                 notifyObservers("Current floor: " + currentFloor +  " Current goal: "+ currentGoal + " Moving " + status.name());
 
-                while (System.currentTimeMillis() - start < 10000) {
+                //
+                while (System.currentTimeMillis() - start < speed * 1000) {
                     // Elevator moves
                 }
                 currentFloor = (status == Status.BOTTOM) ? --currentFloor : ++currentFloor;
@@ -74,14 +75,17 @@ public class Elevator extends Observable {
     }
 
     void stopOnTheFloor(int floor){
+        setChanged();
+        notifyObservers("Stop at " + floor);
         long start = System.currentTimeMillis();
-        while ((System.currentTimeMillis() - start < 4000)) {
+        // Stop and start delay
+        while ((System.currentTimeMillis() - start < 2*delay * 1000)) {
             if (System.currentTimeMillis() - start < 2000) {
                 // stop
             }
         }
         setChanged();
-        notifyObservers("Stop at " + floor);
+        notifyObservers("Start from " + floor);
     }
 
 }

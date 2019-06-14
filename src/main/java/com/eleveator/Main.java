@@ -7,6 +7,13 @@ public class Main {
         elevator.call(7);
         elevator.call(6);
         elevator.call(4);
-        new Thread(() -> elevator.move()).start();
+        elevator.move();
+
+
+        elevator.call(7);
+        elevator.call(4);
+        elevator.call(3);
+        elevator.call(6);
+        elevator.move();
     }
 }
